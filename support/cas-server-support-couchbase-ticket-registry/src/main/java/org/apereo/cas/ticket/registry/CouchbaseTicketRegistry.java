@@ -157,8 +157,8 @@ public class CouchbaseTicketRegistry extends AbstractTicketRegistry implements D
     }
 
     @Override
-    public Collection<Ticket> getTickets() {
-        val tickets = new ArrayList<Ticket>();
+    public Collection<? extends Ticket> getTickets() {
+        val tickets = new ArrayList<>();
         this.ticketCatalog.findAll().forEach(t -> {
             val it = getViewResultIteratorForPrefixedTickets(t.getPrefix() + '-').iterator();
             while (it.hasNext()) {
