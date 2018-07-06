@@ -45,7 +45,7 @@ public class RestfulServiceRegistry extends AbstractServiceRegistry {
     }
 
     @Override
-    public List<RegisteredService> load() {
+    public List<? extends RegisteredService> load() {
         val responseEntity = restTemplate.exchange(this.url, HttpMethod.GET,
             new HttpEntity<>(this.headers), RegisteredService[].class);
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
