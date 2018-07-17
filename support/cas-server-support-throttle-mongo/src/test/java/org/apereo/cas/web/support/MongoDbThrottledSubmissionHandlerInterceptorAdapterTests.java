@@ -1,6 +1,5 @@
 package org.apereo.cas.web.support;
 
-import org.apereo.cas.audit.config.CasSupportJdbcAuditConfiguration;
 import org.apereo.cas.audit.spi.config.CasCoreAuditConfiguration;
 import org.apereo.cas.config.CasCoreAuthenticationConfiguration;
 import org.apereo.cas.config.CasCoreAuthenticationHandlersConfiguration;
@@ -17,25 +16,25 @@ import org.apereo.cas.config.CasCoreTicketCatalogConfiguration;
 import org.apereo.cas.config.CasCoreTicketsConfiguration;
 import org.apereo.cas.config.CasCoreUtilConfiguration;
 import org.apereo.cas.config.CasCoreWebConfiguration;
+import org.apereo.cas.config.CasMongoDbThrottlingConfiguration;
 import org.apereo.cas.config.CasPersonDirectoryConfiguration;
 import org.apereo.cas.config.CasRegisteredServicesTestConfiguration;
+import org.apereo.cas.config.CasSupportMongoDbAuditConfiguration;
 import org.apereo.cas.config.support.CasWebApplicationServiceFactoryConfiguration;
 import org.apereo.cas.logout.config.CasCoreLogoutConfiguration;
-import org.apereo.cas.web.support.config.CasJdbcThrottlingConfiguration;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.autoconfigure.RefreshAutoConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 /**
- * Unit test for {@link JdbcThrottledSubmissionHandlerInterceptorAdapter}.
+ * This is  {@link MongoDbThrottledSubmissionHandlerInterceptorAdapterTests}.
  *
- * @author Marvin S. Addison
- * @since 3.0.0
+ * @author Timur Duehr
+ * @since 6.0.0
  */
 @SpringBootTest(classes = {
-    CasJdbcThrottlingConfiguration.class,
+    CasMongoDbThrottlingConfiguration.class,
     CasCoreAuditConfiguration.class,
     CasCoreConfiguration.class,
     CasCoreAuthenticationServiceSelectionStrategyConfiguration.class,
@@ -54,15 +53,18 @@ import org.springframework.test.context.TestPropertySource;
     CasCoreAuthenticationConfiguration.class,
     CasCoreServicesAuthenticationConfiguration.class,
     CasCoreHttpConfiguration.class,
-    CasSupportJdbcAuditConfiguration.class,
+    CasSupportMongoDbAuditConfiguration.class,
     CasCoreWebConfiguration.class,
     CasRegisteredServicesTestConfiguration.class,
     CasWebApplicationServiceFactoryConfiguration.class})
 @TestPropertySource(properties = {
     "cas.authn.throttle.usernameParameter=username",
-    "cas.authn.throttle.failure.code=AUTHENTICATION_FAILED",
-    "cas.audit.jdbc.asynchronous=false"})
-@Slf4j
-public class JdbcThrottledSubmissionHandlerInterceptorAdapterTests extends
-    BaseThrottledSubmissionHandlerInterceptorAdapterTests {
+    "cas.audit.mongo.host=ds135522.mlab.com",
+    "cas.audit.mongo.port=35522",
+    "cas.audit.mongo.userId=casuser",
+    "cas.audit.mongo.password=Mellon",
+    "cas.audit.mongo.databaseName=jasigthrottle",
+    "cas.audit.mongo.dropCollection=true",
+    "cas.audit.mongo.asynchronous=false"})
+public class MongoDbThrottledSubmissionHandlerInterceptorAdapterTests extends BaseThrottledSubmissionHandlerInterceptorAdapterTests {
 }

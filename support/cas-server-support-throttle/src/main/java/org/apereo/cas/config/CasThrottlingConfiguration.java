@@ -1,11 +1,6 @@
-package org.apereo.cas.web.support.config;
+package org.apereo.cas.config;
 
-import lombok.val;
-
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.apereo.cas.audit.AuditTrailExecutionPlan;
-import org.apereo.cas.config.CasCoreUtilConfiguration;
 import org.apereo.cas.configuration.CasConfigurationProperties;
 import org.apereo.cas.web.support.AuthenticationThrottlingExecutionPlan;
 import org.apereo.cas.web.support.AuthenticationThrottlingExecutionPlanConfigurer;
@@ -15,6 +10,10 @@ import org.apereo.cas.web.support.InMemoryThrottledSubmissionByIpAddressHandlerI
 import org.apereo.cas.web.support.InMemoryThrottledSubmissionCleaner;
 import org.apereo.cas.web.support.NoOpThrottledSubmissionHandlerInterceptor;
 import org.apereo.cas.web.support.ThrottledSubmissionHandlerInterceptor;
+
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
